@@ -1,12 +1,13 @@
+<x-navbar/>
 @extends('layout')
 
 @section('main')
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
+            {{-- <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            </a> --}}
         </x-slot>
 
         <!-- Session Status -->
@@ -54,6 +55,7 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+            <div class="register">Do not have account? <span class="text-yellow-600"><a href="register">Register</a></span></div>
         </form>
     </x-auth-card>
 </x-guest-layout>

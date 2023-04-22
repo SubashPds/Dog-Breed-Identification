@@ -1,3 +1,4 @@
+<x-navbar/>
 @extends('layout')
 
 @section('main')
