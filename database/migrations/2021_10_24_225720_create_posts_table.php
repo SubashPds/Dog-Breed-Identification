@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('imagePath');
             $table->text('body');
+            $table->boolean('is_approved')->default(0);
             $table->timestamps();
         });
     }

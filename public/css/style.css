@@ -12,7 +12,7 @@ body {
 }
 
 #wrapper {
-  margin-left: 300px;
+  margin-left: 150px;
   overflow-x: hidden;
 }
 
@@ -87,7 +87,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 150px;
   background-color: black;
   height: 100vh;
   transition: 0.5s;
@@ -95,16 +95,17 @@ img {
 }
 
 .brand-title {
-  margin: 75px 0 60px 55px;
+  margin: 75px 0 60px 10px;
   font-size: 22px;
-  font-weight: 300;
+  /* font-weight: 220; */
+  font: bold;
 }
 
 .side-links li {
-  margin: 6px 8px 20px 56px;
+  margin-left:30px;
   list-style: none;
-  font-weight: 300;
-  margin-bottom: 50px;
+  font-weight: 220;
+  margin-bottom: 30px;
 }
 
 .side-links .active {
