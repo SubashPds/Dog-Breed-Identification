@@ -124,6 +124,35 @@ class BlogController extends Controller
         return redirect()->back()->with('status', 'Post Edited Successfully');
     }
 
+    public function approve(Request $request, Post $post){
+        if(auth()->user()->id !== $post->user->id){
+            abort(403);
+        }
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required | image',
+            'body' => 'required'
+        ]);
+        
+        $title = $request->input('title');
+ 
+        $postId = $post->id;
+        $slug = Str::slug($title, '-') . '-' . $postId;
+        $body = $request->input('body');
+        $is_approve=1;
+        //File upload
+        $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
+ 
+        
+        $post->title = $title;
+        $post->slug = $slug;
+        $post->body = $body;
+        $post->imagePath = $imagePath;
+ 
+        $post->save();
+        
+        return redirect()->back()->with('status', 'Post Edited Successfully');
+    }
     // public function show($slug){
     //     $post = Post::where('slug', $slug)->first();
     //     return view('blogPosts.single-blog-post', compact('post'));
@@ -146,6 +175,10 @@ class BlogController extends Controller
         $user_id = auth()->user()->id;
         $posts = Post::where('user_id', $user_id)->get();
         return view('dashboard', compact('posts'));
+    }
+    public function pendingBlog(){
+        $posts = Post::where('is_approved', 0)->get();
+        return view('pendingBlogs',compact('posts'));
     }
  
 }

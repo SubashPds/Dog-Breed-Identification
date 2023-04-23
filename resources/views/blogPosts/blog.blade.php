@@ -43,7 +43,7 @@
                     <img class="w-52" src="{{ asset($post->imagePath) }}" alt="" />
                     <p class="text-gray-900 mb-4 mt-4">{{ Str::limit($post->body, 100) }}</p>
         
-                    @auth
+                    {{-- @auth
                         @if (auth()->user()->id === $post->user->id)
                             <div class="post-buttons">
                                 <a href="{{ route('blog.edit', $post) }}">Edit</a>
@@ -54,7 +54,7 @@
                                 </form>
                             </div>
                         @endif
-                    @endauth
+                    @endauth --}}
                 </div>
             @empty
                 <p>Sorry, currently there is no blog post related to that search!</p>
