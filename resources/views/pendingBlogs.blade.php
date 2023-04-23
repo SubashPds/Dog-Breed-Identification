@@ -3,6 +3,8 @@
 <div class="p-5"><h2>Pending blogs</h2></div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pl-5">
+    @if ($posts)
+    {{ $posts }}
     @foreach($posts as $post)
     <div class="bg-white border-1 rounded-md overflow-hidden shadow-md relative">
 
@@ -30,6 +32,10 @@
         </div>
     </div>
     @endforeach
+    @else
+        <p>No pending blogs</p>
+    @endif
+  
 
 
 </div>

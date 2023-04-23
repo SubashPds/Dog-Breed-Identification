@@ -12,90 +12,95 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['index', 'show']);
     }
-    
-    public function index(Request $request) {
-     
+
+    public function index(Request $request)
+    {
+
         if ($request->search) {
             $posts = Post::where('is_approved', 1)
-                        ->where(function ($query) use ($request) {
-                            $query->where('title', 'like', '%' . $request->search . '%')
-                                ->orWhere('body', 'like', '%' . $request->search . '%');
-                        })
-                        ->latest()
-                        ->paginate(4);
+                ->where(function ($query) use ($request) {
+                    $query->where('title', 'like', '%' . $request->search . '%')
+                        ->orWhere('body', 'like', '%' . $request->search . '%');
+                })
+                ->latest()
+                ->paginate(4);
         } elseif ($request->category) {
             $posts = Category::where('name', $request->category)
-                        ->firstOrFail()
-                        ->posts()
-                        ->where('is_approved', 1)
-                        ->paginate(3)
-                        ->withQueryString();
+                ->firstOrFail()
+                ->posts()
+                ->where('is_approved', 1)
+                ->paginate(3)
+                ->withQueryString();
         } else {
             $posts = Post::where('is_approved', 1)
-                        ->latest()
-                        ->paginate(4);
+                ->latest()
+                ->paginate(4);
         }
-    
+
         $categories = Category::all();
-           
+
         return view('blogPosts.blog', compact('posts', 'categories'));
     }
-    
 
-    public function create(){
+
+    public function create()
+    {
         $categories = Category::all();
         return view('blogPosts.create-blog-post', compact('categories'));
     }
 
-    public function store(Request $request){
-        
-       $request->validate([
-           'title' => 'required',
-           'image' => 'required | image',
-           'body' => 'required',
-           'category_id' => 'required'
-       ]);
-       
-       $title = $request->input('title');
-       $category_id = $request->input('category_id');
-       
-       if(Post::latest()->first() !== null){
-        $postId = Post::latest()->first()->id + 1;
-       } else{
-           $postId = 1;
-       }
+    public function store(Request $request)
+    {
 
-       $slug = Str::slug($title, '-') . '-' . $postId;
-       $user_id = Auth::user()->id;
-       $body = $request->input('body');
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required | image',
+            'body' => 'required',
+            'category_id' => 'required'
+        ]);
 
-       //File upload
-       $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
+        $title = $request->input('title');
+        $category_id = $request->input('category_id');
 
-       $post = new Post();
-       $post->title = $title;
-       $post->category_id = $category_id;
-       $post->slug = $slug;
-       $post->user_id = $user_id;
-       $post->body = $body;
-       $post->imagePath = $imagePath;
+        if (Post::latest()->first() !== null) {
+            $postId = Post::latest()->first()->id + 1;
+        } else {
+            $postId = 1;
+        }
 
-       $post->save();
-       
-       return redirect()->back()->with('status', 'Post Created Successfully');
+        $slug = Str::slug($title, '-') . '-' . $postId;
+        $user_id = Auth::user()->id;
+        $body = $request->input('body');
+
+        //File upload
+        $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
+
+        $post = new Post();
+        $post->title = $title;
+        $post->category_id = $category_id;
+        $post->slug = $slug;
+        $post->user_id = $user_id;
+        $post->body = $body;
+        $post->imagePath = $imagePath;
+
+        $post->save();
+
+        return redirect()->back()->with('status', 'Post Created Successfully');
     }
 
-    public function edit(Post $post){
-        if(auth()->user()->id !== $post->user->id){
+    public function edit(Post $post)
+    {
+        if (auth()->user()->id !== $post->user->id) {
             abort(403);
         }
         return view('blogPosts.edit-blog-post', compact('post'));
     }
 
-    public function update(Request $request, Post $post){
-        if(auth()->user()->id !== $post->user->id){
+    public function update(Request $request, Post $post)
+    {
+        if (auth()->user()->id !== $post->user->id) {
             abort(403);
         }
         $request->validate([
@@ -103,54 +108,35 @@ class BlogController extends Controller
             'image' => 'required | image',
             'body' => 'required'
         ]);
-        
+
         $title = $request->input('title');
- 
+
         $postId = $post->id;
         $slug = Str::slug($title, '-') . '-' . $postId;
         $body = $request->input('body');
- 
+
         //File upload
         $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
- 
-        
+
+
         $post->title = $title;
         $post->slug = $slug;
         $post->body = $body;
         $post->imagePath = $imagePath;
- 
+
         $post->save();
-        
+
         return redirect()->back()->with('status', 'Post Edited Successfully');
     }
 
-    public function approve(Request $request, Post $post){
-        if(auth()->user()->id !== $post->user->id){
-            abort(403);
-        }
-        $request->validate([
-            'title' => 'required',
-            'image' => 'required | image',
-            'body' => 'required'
-        ]);
-        
-        $title = $request->input('title');
- 
-        $postId = $post->id;
-        $slug = Str::slug($title, '-') . '-' . $postId;
-        $body = $request->input('body');
-        $is_approve=1;
-        //File upload
-        $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
- 
-        
-        $post->title = $title;
-        $post->slug = $slug;
-        $post->body = $body;
-        $post->imagePath = $imagePath;
- 
+    public function approve(Request $request, Post $post)
+    {
+
+        $post->is_approved = true;
+
+
         $post->save();
-        
+
         return redirect()->back()->with('status', 'Post Edited Successfully');
     }
     // public function show($slug){
@@ -159,26 +145,29 @@ class BlogController extends Controller
     // }
 
     // Using Route model binding
-    public function show(Post $post){
+    public function show(Post $post)
+    {
         $category = $post->category;
 
         $relatedPosts = $category->posts()->where('id', '!=', $post->id)->latest()->take(3)->get();
         return view('blogPosts.single-blog-post', compact('post', 'relatedPosts'));
     }
 
-    public function destroy(Post $post){
+    public function destroy(Post $post)
+    {
         $post->delete();
         return redirect()->back()->with('status', 'Post Delete Successfully');
     }
 
-    public function indexOwnBlog(){     
+    public function indexOwnBlog()
+    {
         $user_id = auth()->user()->id;
         $posts = Post::where('user_id', $user_id)->get();
         return view('dashboard', compact('posts'));
     }
-    public function pendingBlog(){
+    public function pendingBlog()
+    {
         $posts = Post::where('is_approved', 0)->get();
-        return view('pendingBlogs',compact('posts'));
+        return view('pendingBlogs', compact('posts'));
     }
- 
 }
