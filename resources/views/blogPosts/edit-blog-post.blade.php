@@ -7,6 +7,7 @@
         <section id="contact-us">
             <h1 style="padding-top: 50px;">Edit Post!</h1>
             @include('includes.flash-message')
+
             <!-- Contact Form -->
             <div class="contact-form">
                 <form action="{{ route('blog.update', $post) }}" method="post" enctype="multipart/form-data">

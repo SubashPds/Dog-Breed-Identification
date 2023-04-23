@@ -79,8 +79,12 @@ Route::resource('/categories', CategoryController::class);
 // Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [BlogController::class, 'indexOwnBlog'])
+    ->middleware(['auth'])
+    ->name('dashboard');
+
 
 require __DIR__.'/auth.php';

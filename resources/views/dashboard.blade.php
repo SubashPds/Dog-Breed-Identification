@@ -1,3 +1,4 @@
+<x-navbar/>
 @extends('layout')
 
 @section('main')
@@ -16,7 +17,9 @@
                 @endif
 
                 @if ( Auth::user()->is_admin!=1)
-                <x-user />
+                {{-- <x-user /> --}}
+                @include('components.user', ['posts' => $posts])
+
                 @endif
 
 

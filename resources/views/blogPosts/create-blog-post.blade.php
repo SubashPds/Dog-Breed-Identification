@@ -1,8 +1,11 @@
+<x-navbar/>
 @extends('layout')
 @section('head')
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 @endsection
 @section('main')
+<x-app-layout>
+
     <main class="container" style="background-color: #fff;">
         <section id="contact-us">
             <h1 style="padding-top: 50px;">Create New Post!</h1>
@@ -53,6 +56,8 @@
 
         </section>
     </main>
+</x-app-layout>
+
 @endsection
 
 @section('scripts')

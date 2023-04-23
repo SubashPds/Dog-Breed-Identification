@@ -2,7 +2,12 @@
 @extends('layout')
 
 @section('main')
-  
+<x-app-layout>
+  <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('About') }}
+      </h2>
+  </x-slot>
     <!-- main -->
     <main class="container">
       <section class="single-blog-post">
@@ -31,4 +36,6 @@
         </div>
       </section>
     </main>
+  </x-app-layout>
+
 @endsection

@@ -15,21 +15,34 @@ class BlogController extends Controller
        $this->middleware('auth')->except(['index', 'show']);
     }
     
-    public function index(Request $request){
-        if($request->search){
-            $posts = Post::where('title', 'like', '%' . $request->search . '%')
-            ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(4);
-        } elseif($request->category){
-            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
+    public function index(Request $request) {
+     
+        if ($request->search) {
+            $posts = Post::where('is_approved', 1)
+                        ->where(function ($query) use ($request) {
+                            $query->where('title', 'like', '%' . $request->search . '%')
+                                ->orWhere('body', 'like', '%' . $request->search . '%');
+                        })
+                        ->latest()
+                        ->paginate(4);
+        } elseif ($request->category) {
+            $posts = Category::where('name', $request->category)
+                        ->firstOrFail()
+                        ->posts()
+                        ->where('is_approved', 1)
+                        ->paginate(3)
+                        ->withQueryString();
+        } else {
+            $posts = Post::where('is_approved', 1)
+                        ->latest()
+                        ->paginate(4);
         }
-        else{
-            $posts = Post::latest()->paginate(4);
-        }
-
+    
         $categories = Category::all();
-       
+           
         return view('blogPosts.blog', compact('posts', 'categories'));
     }
+    
 
     public function create(){
         $categories = Category::all();
@@ -128,4 +141,11 @@ class BlogController extends Controller
         $post->delete();
         return redirect()->back()->with('status', 'Post Delete Successfully');
     }
+
+    public function indexOwnBlog(){     
+        $user_id = auth()->user()->id;
+        $posts = Post::where('user_id', $user_id)->get();
+        return view('dashboard', compact('posts'));
+    }
+ 
 }

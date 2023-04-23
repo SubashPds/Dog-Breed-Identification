@@ -45,7 +45,7 @@ img {
 
 /* header */
 
-.header {
+/* .header {
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -53,16 +53,16 @@ img {
   align-items: center;
   justify-content: center;
   position: relative;
-}
+} */
 
-.header-text {
+/* .header-text {
   margin-top: 145px;
   color: rgb(10, 10, 10);
   text-align: center;
   z-index: 1;
-}
+} */
 
-.header-text h1 {
+/* .header-text h1 {
   font-size: 70px;
   font-weight: 700;
 }
@@ -70,7 +70,7 @@ img {
 .header-text h4 {
   font-size: 22px;
   font-weight: 300;
-}
+} */
 
 .overlay {
   position: absolute;
@@ -82,7 +82,7 @@ img {
 }
 
 /* Sidebar */
-.sidebar {
+/* .sidebar {
   position: fixed;
   top: 0;
   left: 0;
@@ -91,12 +91,12 @@ img {
   height: 100vh;
   transition: 0.5s;
   display: block;
-}
-
+} */
+/* 
 .brand-title {
   margin: 75px 0 60px 10px;
   font-size: 22px;
-  /* font-weight: 220; */
+  font-weight: 220;
   font: bold;
 }
 
@@ -119,7 +119,7 @@ img {
 .side-links li a:hover {
   color: white;
   transform: translateX(10px);
-}
+} */
 
 footer {
   margin-top: 140px;
@@ -146,30 +146,30 @@ footer small {
 }
 
 /* Menu Button */
-.bar {
+/* .bar {
   width: 30px;
   height: 3px;
   background-color: white;
   margin: 6px 0;
-}
+} */
 
-.menuButton {
+/* .menuButton {
   cursor: pointer;
   position: fixed;
   top: 2vh;
   left: 2vw;
   z-index: 1;
   display: none;
-}
+} */
 
 /* Close Button */
-.closeButton {
+/* .closeButton {
   font-size: 50px;
   padding-left: 85%;
   color: whitesmoke;
   cursor: pointer;
   display: none;
-}
+} */
 
 /* Blog Styles */
 
@@ -284,8 +284,8 @@ footer small {
 
 .cards-blog {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
   margin-bottom: 1rem;
   border: none;
 }
@@ -538,6 +538,7 @@ textarea {
   }
 
   #wrapper {
+    margin-top: 0;
     margin-left: 0;
   }
 

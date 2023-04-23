@@ -38,7 +38,7 @@
                 <a href=""><i class="fab fa-instagram"></i></a>
                 <a href=""><i class="fab fa-twitter"></i></a>
             </div>
-            <small>&copy 2021 Alphayo Blog</small>
+            <small>&copy 2023 Dog Breed Identification</small>
         </footer>
     </div>
 
