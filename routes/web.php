@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DogBreedIdentifierController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -91,4 +92,10 @@ Route::get('/dashboard', [BlogController::class, 'indexOwnBlog'])
 Route::get('/dashboard/pending', [BlogController::class, 'pendingBlog'])
     ->middleware(['auth'])
     ->name('dashboard.pending');
+
+    Route::get('/dog-breed', function () {
+        return view('dog_breed_form');
+    })->name('dog-breed-form');
+
+Route::post('/predict-breed',[DogBreedIdentifierController::class,'predict'])->name('predict-breed');
 require __DIR__ . '/auth.php';
