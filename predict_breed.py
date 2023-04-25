@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import tensorflow as tf
+import sys
 
 # Load the pre-trained model
 model = tf.keras.applications.ResNet50(weights='imagenet')
@@ -21,6 +22,8 @@ def predict_breed(img_path):
     return breed
 
 # Test the function with an example image
-img_path = 'D:\Rupesh_dai\Laravel-8-Blog-Tutorial-up-to-Deployment\Pomeranian.jpg'
+# img_path = 'D:\Rupesh_dai\Laravel-8-Blog-Tutorial-up-to-Deployment\Pomeranian.jpg'
+img_path = sys.argv[1]
+
 breed = predict_breed(img_path)
 print('The predicted dog breed is', breed)
