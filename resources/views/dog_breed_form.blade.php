@@ -1,4 +1,7 @@
-<form action="{{ route('predict-breed') }}" method="post" enctype="multipart/form-data">
+<x-navbar/>
+<x-app-layout>
+
+<form action="{{ route('predict-breed') }}" method="post" enctype="multipart/form-data" class="">
     @csrf
     <div class="form-group">
         <label for="image">Upload a dog image:</label>
@@ -9,3 +12,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Predict breed</button>
 </form>
+</x-app-layout>
