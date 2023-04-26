@@ -1,1 +1,0 @@
-<h1>Breed = {{ $breed }}</h1>
