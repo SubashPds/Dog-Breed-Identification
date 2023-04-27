@@ -41,7 +41,7 @@
                     <h3 class="text-lg font-medium mb-2 ml-12">{{ $post->title }}</h3>
                     <div class="ml-auto mr-auto bg-gray-300 object-cover h-24 w-32  bg-cover bg-center"
                         style="background-image: url('{{ asset($post->imagePath) }}')">
-                    </div>
+                    </div>                  
                     <p class="text-gray-700 mb-4 mt-4">{{ Str::limit($post->body, 100) }}</p>
                     {{-- <div class="float-right text-gray-700">
                         <a href="{{ route('blog.show', $post) }}"> Read more...</a>

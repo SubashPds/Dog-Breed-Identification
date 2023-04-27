@@ -27,7 +27,7 @@ elif result[0][1] == 1:
     print("This is a Japanese spaniel")
 elif result[0][2] == 1:
     print("This is a Chow")
-elif result[0][3] == 1:
-    print("This is human")
+# elif result[0][3] == 1:
+#     print("This is human")
 else:
-    print("Sorry")
+    print("Sorry I cannot identify that image")
