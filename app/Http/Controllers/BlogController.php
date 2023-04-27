@@ -74,8 +74,14 @@ class BlogController extends Controller
         $user_id = Auth::user()->id;
         $body = $request->input('body');
 
-        //File upload
-        $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
+       
+        $imagePath = $request->file('image');
+        $filename = date('YmdHi') . $imagePath->getClientOriginalName();
+        $imagePath->move(public_path('postImage'), $filename);
+        
+       
+
+
 
         $post = new Post();
         $post->title = $title;
@@ -83,7 +89,7 @@ class BlogController extends Controller
         $post->slug = $slug;
         $post->user_id = $user_id;
         $post->body = $body;
-        $post->imagePath = $imagePath;
+        $post->imagePath = 'postImage/' . $filename;
 
         $post->save();
 
@@ -115,14 +121,14 @@ class BlogController extends Controller
         $slug = Str::slug($title, '-') . '-' . $postId;
         $body = $request->input('body');
 
-        //File upload
-        $imagePath = 'storage/' . $request->file('image')->store('postsImages', 'public');
-
+        $imagePath= $request->file('image');
+        $filename= date('YmdHi').$imagePath->getClientOriginalName();
+        $imagePath-> move(public_path('postImage'), $filename);
 
         $post->title = $title;
         $post->slug = $slug;
         $post->body = $body;
-        $post->imagePath = $imagePath;
+        $post->imagePath = 'postImage/' . $filename;
 
         $post->save();
 

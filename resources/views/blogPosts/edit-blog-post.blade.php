@@ -1,9 +1,12 @@
+<x-navbar/>
 @extends('layout')
 @section('head')
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 @endsection
 @section('main')
-    <main class="container" style="background-color: #fff;">
+<x-app-layout>
+
+    <main class="container" >
         <section id="contact-us">
             <h1 style="padding-top: 50px;">Edit Post!</h1>
             @include('includes.flash-message')
@@ -41,6 +44,7 @@
 
         </section>
     </main>
+</x-app-layout>
 @endsection
 
 @section('scripts')

@@ -60,7 +60,7 @@ Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 // To about page
 Route::get('/about', function () {
     return view('about');
-})->name('about');
+})->name('about.show');
 
 // To contact page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');

@@ -22,16 +22,16 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="blog">Blog</a>
+        <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="about">About</a>
+        <a class="nav-link" href="{{ route('about.show') }}">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login">Identify dog breed</a>
+        <a class="nav-link" href="{{ route('login') }}">Identify dog breed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login">Login</a>
+        <a class="nav-link" href="{{ route('login') }}">Login</a>
       </li>
      
    
@@ -57,7 +57,7 @@
         <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('about') }}">About</a>
+        <a class="nav-link" href="{{ route('about.show') }}">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="dog-breed">Identify dog breed</a>

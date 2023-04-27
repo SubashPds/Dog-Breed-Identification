@@ -4,7 +4,6 @@
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pl-5">
     @if ($posts)
-    {{ $posts }}
     @foreach($posts as $post)
     <div class="bg-white border-1 rounded-md overflow-hidden shadow-md relative">
 
