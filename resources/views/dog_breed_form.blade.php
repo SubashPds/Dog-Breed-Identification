@@ -1,5 +1,6 @@
 <x-navbar/>
 <x-app-layout>
+    <img src="{{ asset($image) }}" alt="Image description">
 
 <div class="flex justify-center items-center pt-16">
     <form action="{{ route('predict-breed') }}" method="post" enctype="multipart/form-data">
@@ -25,7 +26,7 @@
 </div>
 
 
-@include('components.result', ['breed' => $breed ?? null])
+@include('components.result', ['breed' => $breed ?? null,'image'=>$image ?? null])
 
 </x-app-layout>
 

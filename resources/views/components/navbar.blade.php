@@ -28,11 +28,12 @@
         <a class="nav-link" href="about">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login">Login</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="login">Identify dog breed</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login">Login</a>
+      </li>
+     
    
     </ul>
   </div>

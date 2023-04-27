@@ -12,7 +12,7 @@ class DogBreedIdentifierController extends Controller
         $relativePath = $request->image->storeAs('images', $originalName);       
         $imgPath = storage_path('app/' . $relativePath);
         $output= shell_exec("C:\Python311\python.exe D:\Rupesh_dai\Laravel-8-Blog-Tutorial-up-to-Deployment\breed_prediction.py \"$imgPath\"");
-        return view('dog_breed_form', ['breed' => $output]);
+        return view('dog_breed_form', ['breed' => $output,'image'=>$relativePath]);
 
     }
     

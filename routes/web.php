@@ -96,6 +96,6 @@ Route::get('/dashboard/pending', [BlogController::class, 'pendingBlog'])
     Route::get('/dog-breed', function () {
         return view('dog_breed_form');
     })->name('dog-breed-form');
-
-Route::post('/predict-breed',[DogBreedIdentifierController::class,'predict'])->name('predict-breed');
+Route::view('test','test');
+    Route::post('/predict-breed',[DogBreedIdentifierController::class,'predict'])->name('predict-breed');
 require __DIR__ . '/auth.php';
