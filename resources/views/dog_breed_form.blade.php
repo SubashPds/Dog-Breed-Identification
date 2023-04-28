@@ -24,14 +24,15 @@
                 <img id="preview" style="display:none; width:120px;" />
                 @include('components.result', ['breed' => $breed ?? null,'image'=>$image ?? null])
 
+                <div>
                     <span> <button type="submit" class="btn bg-yellow-500 text-white mt-3 mr-1">Predict breed</button>
                     </span>
-             
+                    <button class="btn mt-3 bg-red-400 text-white"  onclick="window.location.href='{{ route('dog-breed-form') }}'">Clear</button>
+                </span>
+                </div>
 
 
             </form>
-            {{-- <div class="mt-28 mr-4"> <a href="{{ route('about.show') }}"><button class="btn bg-red-400 text-white">Clear</button></a>
-            </div> --}}
         </div>
     </div>
 

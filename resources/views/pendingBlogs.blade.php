@@ -19,10 +19,12 @@
             <div class="ml-auto mr-auto bg-gray-300 object-cover h-24 w-32  bg-cover bg-center"
                 style="background-image: url('{{ asset($post->imagePath) }}')">
             </div>
-            <p class="text-gray-700 mb-4 mt-4">{{ Str::limit($post->body, 100) }}</p>
-            <p class="text-gray-700 mb-4 mt-4 hover:text-blue-600">Read More</p>
+            <p class="text-gray-700 mb-5 mt-4">{{ Str::limit($post->body, 100) }}</p>
+            <div class="absolute bottom-8 right-1 text-gray-700">
+                <a href="{{ route('blog.show', $post) }}"> Read more...</a>
+            </div>
         </div>
-        <div class="float-right mr-2 mb-2 ">
+        <div class="absolute bottom-1 right-1 ">
             <form action="{{ route('blog.approve', $post) }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
