@@ -544,7 +544,7 @@ textarea {
 }
 
 #contact-us input[type="submit"] {
-    background-color: black;
+    background-color: rgb(74, 73, 73);
     color: white;
     border: none;
     cursor: pointer;
