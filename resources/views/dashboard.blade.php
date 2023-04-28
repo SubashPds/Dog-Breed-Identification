@@ -13,8 +13,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 @if ( Auth::user()->is_admin==1)
-                @include('components.admin', ['posts' => $posts])
-
+                @include('components.admin', [
+                    'posts' => $posts,
+                    'total_posts' => $total_posts,
+                    'total_approved_posts' => $total_approved_posts,
+                    'total_pending_posts' => $total_pending_posts
+                ])
+                
                 @endif
 
                 @if ( Auth::user()->is_admin!=1)

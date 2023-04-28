@@ -178,12 +178,38 @@ class BlogController extends Controller
     public function indexOwnBlog()
     {
         $user_id = auth()->user()->id;
+        $allPost=Post::all();
+        $total_posts = $allPost->count();
+        $total_approved_posts = $allPost->where('is_approved', 1)->count();
+        $total_pending_posts = $allPost->where('is_approved', 0)->count();
         $posts = Post::where('user_id', $user_id)->get();
-        return view('dashboard', compact('posts'));
-    }
+        return view('dashboard', [
+            'posts'=>$posts,
+            'total_posts' => $total_posts,
+            'total_approved_posts' => $total_approved_posts,
+            'total_pending_posts' => $total_pending_posts
+        ]);    }
     public function pendingBlog()
     {
         $posts = Post::where('is_approved', 0)->get();
         return view('pendingBlogs', compact('posts'));
+    }
+    public function totalBlogs()
+    {
+        $posts = Post::all();
+        $total_posts = $posts->count();
+        $total_approved_posts = $posts->where('is_approved', 1)->count();
+        $total_pending_posts = $posts->where('is_approved', 0)->count();
+        
+        return view('dashboard', [
+            'total_posts' => $total_posts,
+            'total_approved_posts' => $total_approved_posts,
+            'total_pending_posts' => $total_pending_posts
+        ]);
+        
+        
+        
+        
+
     }
 }
