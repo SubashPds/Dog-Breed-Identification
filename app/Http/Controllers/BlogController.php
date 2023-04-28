@@ -145,6 +145,16 @@ class BlogController extends Controller
 
         return redirect()->back()->with('status', 'Post Edited Successfully');
     }
+    public function block( Post $post)
+    {
+
+        $post->is_approved = false;
+
+
+        $post->save();
+
+        return redirect()->back()->with('status', 'Post Edited Successfully');
+    }
     // public function show($slug){
     //     $post = Post::where('slug', $slug)->first();
     //     return view('blogPosts.single-blog-post', compact('post'));
