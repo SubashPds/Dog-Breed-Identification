@@ -52,6 +52,8 @@ Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update
 // To delete single blog post
 Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy');
 Route::put('/blog/{post}/approve', [BlogController::class, 'approve'])->name('blog.approve');
+Route::put('/blog/{post}/block', [BlogController::class, 'block'])->name('blog.block');
+
 
 
 // To store blog post to the DB
