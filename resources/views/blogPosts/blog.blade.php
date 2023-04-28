@@ -44,9 +44,29 @@
                     <img class="object-fill h-36 w-52" src="{{ asset($post->imagePath) }}" alt="" />
 
                 </div>
-                <p class="text-gray-900 mb-4 mt-4">{{ Str::limit($post->body, 100) }}</p>
+                <p class="text-gray-700 mb-4 mt-4">{{ Str::limit(html_entity_decode(strip_tags($post->body)), 100) }}</p>
+
                 <div class="float-right text-gray-700">
                     <a href="{{ route('blog.show', $post) }}"> Read more...</a>
+                </div>
+                <div>
+                    @if ( Auth::user()->is_admin=1)
+                    <button class="mt-3 px-2 bg-red-500 text-white rounded-md">
+
+                        <form action="{{ route('blog.destroy', $post) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete" class="bg-red-500">
+                        </form>
+                    </button>
+                        <button class="mt-3 px-2  text-white rounded-md">
+                            <form action="{{ route('blog.block', $post) }}" method="post" enctype="multipart/form-data">
+                                @method('put')
+                                @csrf
+                                <input type="submit" value="Block" class="px-2 border-rounded bg-green-500 text-white rounded cursor-pointer"> 
+                            </form>
+                    </button>
+                    @endif
                 </div>
             </div>
 
