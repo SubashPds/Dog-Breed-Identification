@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,12 +75,12 @@ class BlogController extends Controller
         $user_id = Auth::user()->id;
         $body = $request->input('body');
 
-       
+
         $imagePath = $request->file('image');
         $filename = date('YmdHi') . $imagePath->getClientOriginalName();
         $imagePath->move(public_path('postImage'), $filename);
-        
-       
+
+
 
 
 
@@ -121,9 +122,9 @@ class BlogController extends Controller
         $slug = Str::slug($title, '-') . '-' . $postId;
         $body = $request->input('body');
 
-        $imagePath= $request->file('image');
-        $filename= date('YmdHi').$imagePath->getClientOriginalName();
-        $imagePath-> move(public_path('postImage'), $filename);
+        $imagePath = $request->file('image');
+        $filename = date('YmdHi') . $imagePath->getClientOriginalName();
+        $imagePath->move(public_path('postImage'), $filename);
 
         $post->title = $title;
         $post->slug = $slug;
@@ -145,7 +146,7 @@ class BlogController extends Controller
 
         return redirect()->back()->with('status', 'Post Edited Successfully');
     }
-    public function block( Post $post)
+    public function block(Post $post)
     {
 
         $post->is_approved = false;
@@ -177,18 +178,28 @@ class BlogController extends Controller
 
     public function indexOwnBlog()
     {
+        $users = User::where('is_admin','=',null)->get();
+        $totalUsers=$users->count();
+        // dd($users);
+        $latestUsers = User::where('is_admin', '=', null)->orderBy('created_at', 'desc')->get()->take(5);
+        $categories = Category::all();
         $user_id = auth()->user()->id;
-        $allPost=Post::all();
+        $allPost = Post::all();
         $total_posts = $allPost->count();
         $total_approved_posts = $allPost->where('is_approved', 1)->count();
         $total_pending_posts = $allPost->where('is_approved', 0)->count();
         $posts = Post::where('user_id', $user_id)->get();
         return view('dashboard', [
-            'posts'=>$posts,
+            'users' => $users,
+            'totalUsers' => $totalUsers,
+            'latestUsers' => $latestUsers,
+            'posts' => $posts,
+            'categories' => $categories,
             'total_posts' => $total_posts,
             'total_approved_posts' => $total_approved_posts,
             'total_pending_posts' => $total_pending_posts
-        ]);    }
+        ]);
+    }
     public function pendingBlog()
     {
         $posts = Post::where('is_approved', 0)->get();
@@ -200,16 +211,11 @@ class BlogController extends Controller
         $total_posts = $posts->count();
         $total_approved_posts = $posts->where('is_approved', 1)->count();
         $total_pending_posts = $posts->where('is_approved', 0)->count();
-        
+
         return view('dashboard', [
             'total_posts' => $total_posts,
             'total_approved_posts' => $total_approved_posts,
             'total_pending_posts' => $total_pending_posts
         ]);
-        
-        
-        
-        
-
     }
 }
