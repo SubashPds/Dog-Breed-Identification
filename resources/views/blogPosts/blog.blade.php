@@ -50,7 +50,7 @@
                     <a href="{{ route('blog.show', $post) }}"> Read more...</a>
                 </div>
                 <div>
-                    @if ( Auth::user()->is_admin=1)
+                    @if (auth()->check() && auth()->user()->is_admin)
                     <button class="mt-3 px-2 bg-red-500 text-white rounded-md">
 
                         <form action="{{ route('blog.destroy', $post) }}" method="post">
