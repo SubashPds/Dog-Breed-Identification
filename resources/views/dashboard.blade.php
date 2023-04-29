@@ -14,12 +14,15 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 @if ( Auth::user()->is_admin==1)
                 @include('components.admin', [
+                    'users'=>$users,
+                    'totalUsers'=>$totalUsers,
+                    'latestUsers'=>$latestUsers,
                     'posts' => $posts,
+                    'categories' => $categories,
                     'total_posts' => $total_posts,
                     'total_approved_posts' => $total_approved_posts,
                     'total_pending_posts' => $total_pending_posts
                 ])
-                
                 @endif
 
                 @if ( Auth::user()->is_admin!=1)

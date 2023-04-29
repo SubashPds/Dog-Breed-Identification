@@ -1,8 +1,10 @@
+<x-navbar/>
 @extends('layout')
 @section('head')
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 @endsection
 @section('main')
+<x-app-layout>
     <main class="container" style="background-color: #fff;">
         <section id="contact-us">
             <h1 style="padding-top: 50px;">Create New Category!</h1>
@@ -24,10 +26,11 @@
                 </form>
             </div>
             <div class="create-categories">
-                <a href="{{route('categories.index')}}">Categories list <span>&#8594;</span></a>
+                <a href="{{route('dashboard')}}">Back <span>&#8594;</span></a>
             </div>
         </section>
     </main>
+</x-app-layout>
 @endsection
 
 @section('scripts')
