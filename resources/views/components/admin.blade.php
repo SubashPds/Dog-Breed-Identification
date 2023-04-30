@@ -51,7 +51,7 @@
                     <tr>
                         <td class="w-56">{{ $category->name }}</td>
                         <td> <a href="{{ route('categories.edit', $category) }}"><button
-                                    class="rounded px-2 bg-gray-500 text-white mt-1 hover:bg-gray-600 text-sm pt-0.5">Edit</button></a>
+                                    class="rounded px-2 bg-gray-500 text-white mt-1 mr-1 hover:bg-gray-600 text-sm pt-0.5">Edit</button></a>
                         </td>
                         <td>
                             <form action="{{route('categories.destroy', $category)}}" method="post">
@@ -96,15 +96,15 @@
                         </tr>
                         @foreach ($latestUsers as $latestUser)
                         <tr>
-                            <td class="w-36">{{ $latestUser->name }}</td>
-                            <td>{{ $latestUser->email }}</td>
+                            <td class="w-36 text-sm">{{ $latestUser->name }}</td>
+                            <td class="pl-1 text-sm text-gray-600">{{ $latestUser->email }}</td>
                         </tr>
                         @endforeach
                     </table>
                 </div>
                </div>
             </div>
-            <div><button  class="rounded px-2 bg-gray-500 text-white mt-2 hover:bg-gray-600 pt-0.5">See more</button></div>
+            <div><a href="{{ route('users') }}"><button  class="rounded px-2 bg-gray-500 text-white mt-2 hover:bg-gray-600 pt-0.5">See more</button></div>
         </div>
 
     </div>

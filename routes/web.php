@@ -100,4 +100,6 @@ Route::get('/dashboard/pending', [BlogController::class, 'pendingBlog'])
     })->name('dog-breed-form');
 Route::view('test','test');
     Route::post('/predict-breed',[DogBreedIdentifierController::class,'predict'])->name('predict-breed');
+
+    Route::get('/users',[BlogController::class,'users'])->name('users');
 require __DIR__ . '/auth.php';
