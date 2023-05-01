@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DogBreedIdentifierController;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -31,8 +32,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        if ( Auth::user()->is_admin!=1){
+            return redirect()->route('dog-breed-form');
+        }
+        else{
         return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**
