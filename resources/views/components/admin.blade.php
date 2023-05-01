@@ -51,7 +51,7 @@
                     <tr>
                         <td class="w-56">{{ $category->name }}</td>
                         <td> <a href="{{ route('categories.edit', $category) }}"><button
-                                    class="rounded px-2 bg-gray-500 text-white mt-1 hover:bg-gray-600 text-sm pt-0.5">Edit</button></a>
+                                    class="rounded px-2 mr-1 bg-gray-500 text-white mt-1 hover:bg-gray-600 text-sm pt-0.5">Edit</button></a>
                         </td>
                         <td>
                             <form action="{{route('categories.destroy', $category)}}" method="post">
