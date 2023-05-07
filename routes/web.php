@@ -95,9 +95,19 @@ Route::get('/dashboard/pending', [BlogController::class, 'pendingBlog'])
     ->middleware(['auth'])
     ->name('dashboard.pending');
 
+<<<<<<< HEAD
 Route::get('/dog-breed', function () {
     return view('dog_breed_form');
 })->name('dog-breed-form');
 Route::view('test', 'test');
 Route::post('/predict-breed', [DogBreedIdentifierController::class, 'predict'])->name('predict-breed');
+=======
+    Route::get('/dog-breed', function () {
+        return view('dog_breed_form');
+    })->name('dog-breed-form');
+Route::view('test','test');
+    Route::post('/predict-breed',[DogBreedIdentifierController::class,'predict'])->name('predict-breed');
+
+    Route::get('/users',[BlogController::class,'users'])->name('users');
+>>>>>>> origin/main
 require __DIR__ . '/auth.php';

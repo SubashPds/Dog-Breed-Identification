@@ -383,7 +383,7 @@ footer small {
     font-weight: 400;
     text-transform: capitalize;
 }
-.single-blog-post .back {
+.back {
     display: flex;
     width: fit-content;
     position: absolute;
@@ -392,7 +392,7 @@ footer small {
     border-radius: 10px;
 }
 
-.single-blog-post .back button {
+.back button {
     padding: 4px 20px;
     border-radius: 10px;
     background-color: rgb(245, 178, 33);
@@ -400,7 +400,7 @@ footer small {
     border: none;
     cursor: pointer;
 }
-.single-blog-post .back button:hover {
+.back button:hover {
     background-color: rgb(254, 155, 17);
 }
 

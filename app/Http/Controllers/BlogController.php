@@ -218,4 +218,9 @@ class BlogController extends Controller
             'total_pending_posts' => $total_pending_posts
         ]);
     }
+    public function users(){
+        $users = User::where('is_admin','=',null)->get();
+        return view('users',compact('users'));
+
+    }
 }
